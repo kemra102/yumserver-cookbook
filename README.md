@@ -1,13 +1,11 @@
 # yumserver Cookbook
-[![Build Status](https://travis-ci.org/kemra102/yumserver.svg?branch=master)](https://travis-ci.org/kemra102/yumserver)
+[![Build Status](https://travis-ci.org/kemra102/yumserver-cookbook.svg?branch=master)](https://travis-ci.org/kemra102/yumserver-cookbook)
 
 #### Table of Contents
 
 1. [Overview](#overview)
 2. [Requirements](#requirements)
 3. [Attributes](#attributes)
-    * [yumserver::default](#yumserver-default)
-    * [yumserver::_nginx](#yumserver-nginx)
 4. [Usage](#usage)
     * [yumserver_mirror](#yumserver_mirror)
 5. [Contributing](#contributing)
@@ -24,20 +22,9 @@ Requires Chef 12.5 or later as this cookbook makes use of [Custom Resources](htt
 ## Attributes
 
 ### yumserver::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['yumserver']['basepath']</tt></td>
-    <td>String</td>
-    <td>Where to store mirroed yum repos.</td>
-    <td><tt>/var/lib/yum-repo</tt></td>
-  </tr>
-</table>
+| Key                       | Type   | Description                       | Default          |
+|:-------------------------:|:------:|:---------------------------------:|:----------------:|
+| ['yumserver']['basepath'] | String | Where to store mirroed yum repos. | /var/lib/yum-rep |
 
 ### yumserver::_nginx
 <table>
@@ -153,5 +140,6 @@ If you would like to contribute to this cookbook please follow these steps;
 License: [BSD 2-clause](https://tldrlegal.com/license/bsd-2-clause-license-\(freebsd\))
 
 Authors:
+
   * [Danny Roberts](https://github.com/kemra102)
   * [All Contributors](https://github.com/kemra102/yumserver-cookbook/graphs/contributors)
