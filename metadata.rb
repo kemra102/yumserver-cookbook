@@ -15,5 +15,4 @@ source_url 'https://github.com/kemra102/yumserver-cookbook' if
 issues_url 'https://github.com/kemra102/yumserver-cookbook/issues' if
   respond_to?(:issues_url)
 
-depends 'httpd'
-depends 'yum', '~> 3.5.2'
+depends 'yum', '>= 3.5.2'

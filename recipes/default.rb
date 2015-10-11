@@ -17,15 +17,4 @@ end
   package pkg
 end
 
-httpd_service 'default' do
-  servername node['yumserver']['httpd']['servername']
-  listen_ports node['yumserver']['httpd']['port']
-  action :create
-end
-httpd_config 'default' do
-  source 'httpd.conf.erb'
-  variables httpd: {
-    server_name: node['yumserver']['httpd']['servername']
-  }
-  action :create
-end
+include_recipe "#{cookbook_name}::_nginx"

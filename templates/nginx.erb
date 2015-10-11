@@ -1,0 +1,10 @@
+server {
+  listen      80;
+  server_name <%= @nginx_servername %>;
+
+  access_log  <%= @nginx_servername %>.access.log main;
+  location / {
+    root  html;
+    index index.html;
+  }
+}

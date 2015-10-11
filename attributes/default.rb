@@ -1,3 +1,6 @@
 default['yumserver']['basepath'] = '/var/lib/yum-repo'
-default['yumserver']['httpd']['servername'] = node['fqdn']
-default['yumserver']['httpd']['port'] = ['80']
+default['yumserver']['nginx']['config_cookbook'] = 'yumserver'
+default['yumserver']['nginx']['servername'] = node['fqdn']
+
+default['nginx']['repo_source'] = 'nginx'
+default['nginx']['default_site_enabled'] = false

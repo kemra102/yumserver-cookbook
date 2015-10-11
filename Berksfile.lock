@@ -6,12 +6,8 @@ DEPENDENCIES
     path: test/fixtures/cookbooks/yumserver-test
 
 GRAPH
-  compat_resource (12.5.8)
-  httpd (0.3.0)
-    compat_resource (>= 0.0.0)
   yum (3.5.4)
   yumserver (1.0.0)
-    httpd (>= 0.0.0)
-    yum (~> 3.5.2)
+    yum (>= 3.5.2)
   yumserver-test (1.0.0)
     yumserver (>= 0.0.0)
