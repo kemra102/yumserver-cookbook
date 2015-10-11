@@ -1,5 +1,6 @@
-yumserver-cookbook Cookbook
-===========================
+# yumserver-cookbook Cookbook
+[![Build Status](https://travis-ci.org/kemra102/yumserver-cookbook.svg?branch=master)](https://travis-ci.org/kemra102/yumserver-cookbook)
+
 TODO: Enter the cookbook description here.
 
 e.g.
