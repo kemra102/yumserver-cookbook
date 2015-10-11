@@ -1,0 +1,29 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: false
+
+platforms:
+  - name: centos-7
+    driver_config:
+      provision_command:
+        - >
+          curl -L -O https://www.opscode.com/chef/install.sh &&
+          bash install.sh -v <%= ENV.fetch 'CHEF_VERSION', '12.5' %>
+      privileged: true
+  - name: centos-6
+    driver_config:
+      provision_command:
+        - >
+          curl -L -O https://www.opscode.com/chef/install.sh &&
+          bash install.sh -v <%= ENV.fetch 'CHEF_VERSION', '12.5' %>
+
+suites:
+  - name: default
+    run_list:
+      - recipe[yumserver-test]
+    attributes:
