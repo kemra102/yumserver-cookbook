@@ -1,13 +1,7 @@
-yumserver-cookbook CHANGELOG
-============================
+## 2015-10-11 - Release 1.0.0
+### Summary
+Initial release. Includes basic functionality.
 
-This file is used to list changes made in each version of the yumserver-cookbook cookbook.
-
-0.1.0
------
-- [your_name] - Initial release of yumserver-cookbook
-
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+#### Features
+- Mirrors Yum repos.
+- Serves Yum repos via NGINX.
