@@ -27,26 +27,10 @@ Requires Chef 12.5 or later as this cookbook makes use of [Custom Resources](htt
 | ['yumserver']['basepath'] | String | Where to store mirroed yum repos. | /var/lib/yum-rep |
 
 ### yumserver::_nginx
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['yumserver']['nginx']['config_cookbook']</tt></td>
-    <td>String</td>
-    <td>Which cookbook to use for the NGINX config template.</td>
-    <td><tt>yumserver</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['yumserver']['nginx']['servername']</tt></td>
-    <td>String</td>
-    <td>Server name to use in NGINX config.</td>
-    <td><tt>node['fqdn']</tt></td>
-  </tr>
-</table>
+| Key                                       | Type   | Description                                          | Default      |
+|:-----------------------------------------:|:------:|:----------------------------------------------------:|:------------:|
+| ['yumserver']['nginx']['config_cookbook'] | String | Which cookbook to use for the NGINX config template. | yumserver    |
+| ['yumserver']['nginx']['servername']      | String | Server name to use in NGINX config.                  | node['fqdn'] |
 
 ## Usage
 
@@ -74,44 +58,13 @@ Each Yum repo you wish to mirror can be defined using the `yumserver_mirror` cus
 
 Each `yumserver_mirror` has the following attributes:
 
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>name</tt></td>
-    <td>String || Symbol</td>
-    <td>Resource name.</td>
-    <td><tt>N/A</tt></td>
-  </tr>
-  <tr>
-    <td><tt>local_path</tt></td>
-    <td>String</td>
-    <td>The basepath where the repo should be stored.</td>
-    <td><tt>/var/lib/yum-repo</tt></td>
-  </tr>
-  <tr>
-    <td><tt>repo_name</tt></td>
-    <td>String</td>
-    <td>Name of the Yum repo.</td>
-    <td><tt>N/A</tt></td>
-  </tr>
-  <tr>
-    <td><tt>repo_description</tt></td>
-    <td>String</td>
-    <td>Description of the Yum repo.</td>
-    <td><tt>N/A</tt></td>
-  </tr>
-  <tr>
-    <td><tt>repo_baseurl</tt></td>
-    <td>String</td>
-    <td>Base URL of the Yum repo.</td>
-    <td><tt>N/A</tt></td>
-  </tr>
-</table>
+| Attribute        | Type             | Description                                   | Default           |
+|:----------------:|:----------------:|:---------------------------------------------:|:-----------------:|
+| name             | String or Symbol | Resource name.                                | N/A               |
+| local_path       | String           | The basepath where the repo should be stored. | /var/lib/yum-repo |
+| repo_name        | String           | Name of the Yum repo.                         | N/A               |
+| repo_description | String           | Description of the Yum repo.                  | N/A               |
+| repo_baseurl     | String           | Base URL of the Yum repo.                     | N/A               |
 
 To Mirror EPEL for EL7 for example:
 
