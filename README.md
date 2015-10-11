@@ -1,25 +1,29 @@
-# yumserver-cookbook Cookbook
-[![Build Status](https://travis-ci.org/kemra102/yumserver-cookbook.svg?branch=master)](https://travis-ci.org/kemra102/yumserver-cookbook)
+# yumserver Cookbook
+[![Build Status](https://travis-ci.org/kemra102/yumserver.svg?branch=master)](https://travis-ci.org/kemra102/yumserver)
 
-TODO: Enter the cookbook description here.
+#### Table of Contents
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+1. [Overview](#overview)
+2. [Requirements](#requirements)
+3. [Attributes](#attributes)
+    * [yumserver::default](#yumserver-default)
+    * [yumserver::_nginx](#yumserver-nginx)
+4. [Usage](#usage)
+    * [yumserver_mirror](#yumserver_mirror)
+5. [Contributing](#contributing)
+6. [License & Authors](#license-and-authors)
 
-Requirements
-------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+## Overview
 
-e.g.
-#### packages
-- `toaster` - yumserver-cookbook needs toaster to brown your bagel.
+This cookbook allows you to mirror remote Yum repos and serve them up via NGINX.
 
-Attributes
-----------
-TODO: List your cookbook attributes here.
+## Requirements
 
-e.g.
-#### yumserver-cookbook::default
+Requires Chef 12.5 or later as this cookbook makes use of [Custom Resources](https://www.chef.io/blog/2015/10/08/chef-client-12-5-released/).
+
+## Attributes
+
+### yumserver::default
 <table>
   <tr>
     <th>Key</th>
@@ -28,42 +32,126 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['yumserver-cookbook']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['yumserver']['basepath']</tt></td>
+    <td>String</td>
+    <td>Where to store mirroed yum repos.</td>
+    <td><tt>/var/lib/yum-repo</tt></td>
   </tr>
 </table>
 
-Usage
------
-#### yumserver-cookbook::default
-TODO: Write usage instructions for each cookbook.
+### yumserver::_nginx
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['yumserver']['nginx']['config_cookbook']</tt></td>
+    <td>String</td>
+    <td>Which cookbook to use for the NGINX config template.</td>
+    <td><tt>yumserver</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['yumserver']['nginx']['servername']</tt></td>
+    <td>String</td>
+    <td>Server name to use in NGINX config.</td>
+    <td><tt>node['fqdn']</tt></td>
+  </tr>
+</table>
 
-e.g.
-Just include `yumserver-cookbook` in your node's `run_list`:
+## Usage
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[yumserver-cookbook]"
-  ]
-}
+You always need to include the main recipe:
+
+```ruby
+include_recipe 'yumserver::default'
 ```
 
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
+This creates the `basepath` and installs the following packages:
 
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+* yum-utils
+* createrepo
 
-License and Authors
--------------------
-Authors: TODO: List authors
+Additionally the recipe calls `yumserver::_nginx` which;
+
+* Sets-up the upstream NGINX repo.
+* Installs `nginx`.
+* Configures `nginx` to serve up the `basepath`.
+* Manages the `nginx` service.
+
+### yumserver_mirror
+
+Each Yum repo you wish to mirror can be defined using the `yumserver_mirror` custom resource.
+
+Each `yumserver_mirror` has the following attributes:
+
+<table>
+  <tr>
+    <th>Attribute</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>name</tt></td>
+    <td>String || Symbol</td>
+    <td>Resource name.</td>
+    <td><tt>N/A</tt></td>
+  </tr>
+  <tr>
+    <td><tt>local_path</tt></td>
+    <td>String</td>
+    <td>The basepath where the repo should be stored.</td>
+    <td><tt>/var/lib/yum-repo</tt></td>
+  </tr>
+  <tr>
+    <td><tt>repo_name</tt></td>
+    <td>String</td>
+    <td>Name of the Yum repo.</td>
+    <td><tt>N/A</tt></td>
+  </tr>
+  <tr>
+    <td><tt>repo_description</tt></td>
+    <td>String</td>
+    <td>Description of the Yum repo.</td>
+    <td><tt>N/A</tt></td>
+  </tr>
+  <tr>
+    <td><tt>repo_baseurl</tt></td>
+    <td>String</td>
+    <td>Base URL of the Yum repo.</td>
+    <td><tt>N/A</tt></td>
+  </tr>
+</table>
+
+To Mirror EPEL for EL7 for example:
+
+```ruby
+yumserver_mirror 'epel7' do
+  repo_name 'nginx'
+  repo_description 'The NGINX web server & reverse proxy'
+  repo_baseurl 'http://nginx.org/packages/centos/7/x86_64/'
+  action :create
+end
+```
+
+## Contributing
+
+If you would like to contribute to this cookbook please follow these steps;
+
+1. Fork the repository on Github.
+2. Create a named feature branch (like `add_component_x`).
+3. Write your change.
+4. Write tests for your change (if applicable).
+5. Run the tests, ensuring they all pass.
+6. Submit a Pull Request using Github.
+
+## License and Authors
+
+License: [BSD 2-clause](https://tldrlegal.com/license/bsd-2-clause-license-\(freebsd\))
+
+Authors:
+  * [Danny Roberts](https://github.com/kemra102)
+  * [All Contributors](https://github.com/kemra102/yumserver-cookbook/graphs/contributors)
