@@ -20,10 +20,6 @@ end
 
 service 'nginx' do
   action [:enable, :start]
-  supports {
-    restart: false,
-    reload: false,
-    status: false
-  }
+  supports restart: true, reload: true, status: true
   subscribes :restart, 'template[/etc/nginx/conf.d/yumserver]', :delayed
 end
