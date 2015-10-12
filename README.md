@@ -70,9 +70,9 @@ To Mirror EPEL for EL7 for example:
 
 ```ruby
 yumserver_mirror 'epel7' do
-  repo_name 'nginx'
-  repo_description 'The NGINX web server & reverse proxy'
-  repo_baseurl 'http://nginx.org/packages/centos/7/x86_64/'
+  repo_name 'epel'
+  repo_description 'Extra Packages for Enterprise Linux 7'
+  repo_baseurl 'https://dl.fedoraproject.org/pub/epel/7/x86_64/'
   action :create
 end
 ```
