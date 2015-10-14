@@ -36,7 +36,7 @@ action :create do
   end
 end
 
-action :remove do
+action :delete do
   yum_repository repo_name do
     action :delete
   end
