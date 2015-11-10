@@ -15,9 +15,11 @@ template '/etc/nginx/conf.d/yumserver.conf' do
   mode '0644'
 end
 
+conf_dir = node['yumserver']['nginx']['config_directory']
+
 execute 'remove_default_nginx' do
-  command 'mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.deactivated'
-  only_if { ::File.exists?('/etc/nginx/conf.d/default.conf') }
+  command "mv #{conf_dir}/default.conf #{conf_dir}/default.conf.deactivated"
+  only_if { ::File.exist?('/etc/nginx/conf.d/default.conf') }
 end
 
 service 'nginx' do
