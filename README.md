@@ -8,6 +8,7 @@
 3. [Attributes](#attributes)
 4. [Usage](#usage)
     * [yumserver_mirror](#yumserver_mirror)
+    * [yumserver_rsync_mirror](#yumserver_rsync_mirror)
 5. [Contributing](#contributing)
 6. [License & Authors](#license-and-authors)
 
