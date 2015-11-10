@@ -4,7 +4,8 @@ property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_url, String, required: true
 property :rsync_options, String, required: false,
-  default: '-aHS --numeric-ids --delete --delete-delay --delay-updates'
+                                 default: '-aHS --numeric-ids --delete
+                                 --delete-delay --delay-updates'
 
 def real_local_path
   if local_path == NilClass
