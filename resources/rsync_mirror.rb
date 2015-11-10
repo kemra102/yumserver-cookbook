@@ -4,7 +4,7 @@ property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_url, String, required: true
 property :rsync_options, String, required: false,
-                                 default: '-aHS --numeric-ids --delete
+                                 default: '-aHS --numeric-ids --delete \
                                  --delete-delay --delay-updates'
 
 def real_local_path
@@ -12,14 +12,6 @@ def real_local_path
     "#{local_path}/#{name}/"
   else
     "/var/lib/yum-repo/#{name}/"
-  end
-end
-
-def real_rsync_options
-  if rsync_options == NilClass
-    '-aHS --numeric-ids --delete --delete-delay --delay-updates'
-  else
-    rsync_options
   end
 end
 
@@ -32,7 +24,7 @@ action :create do
   end
   ruby_block 'reposync' do
     block do
-      system "rsync #{real_rsync_options} #{repo_url} #{real_local_path}"
+      system "rsync #{rsync_options} #{repo_url} #{real_local_path}"
     end
   end
 end

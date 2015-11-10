@@ -9,12 +9,19 @@ set :backend, :exec
 end
 
 %w(/var/lib/yum-repo /var/lib/yum-repo/nginx
-   /var/lib/yum-repo/centos-virt).each do |dir|
+   /var/lib/yum-repo/nginx/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
     it { should be_mode 755 }
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
+  end
+end
+
+%w(/var/lib/yum-repo/centos-virt
+   /var/lib/yum-repo/centos-virt/xen).each do |dir|
+  describe file(dir) do
+    it { should be_directory }
   end
 end
 
