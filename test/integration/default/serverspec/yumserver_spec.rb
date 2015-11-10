@@ -28,7 +28,7 @@ describe package('nginx') do
   it { should be_installed }
 end
 
-describe file('/etc/nginx/conf.d/yumserver') do
+describe file('/etc/nginx/conf.d/yumserver.conf') do
   it { should be_file }
   it { should be_mode 644 }
   it { should be_owned_by 'nginx' }
