@@ -4,7 +4,7 @@ property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_baseurl, String, required: true
 
-def full_path
+def real_local_path
   if local_path == NilClass
     "#{local_path}/#{name}/"
   else
@@ -18,7 +18,7 @@ action :create do
     baseurl repo_baseurl
     action :create
   end
-  directory full_path do
+  directory real_local_path do
     owner 'root'
     group 'root'
     mode '0755'
@@ -26,12 +26,12 @@ action :create do
   end
   ruby_block 'reposync' do
     block do
-      system "reposync -r #{repo_name} -p #{full_path}"
+      system "reposync -r #{repo_name} -p #{real_local_path}"
     end
   end
   ruby_block 'createrepo' do
     block do
-      system "createrepo #{full_path}"
+      system "createrepo #{real_local_path}"
     end
   end
 end
@@ -40,7 +40,7 @@ action :delete do
   yum_repository repo_name do
     action :delete
   end
-  directory local_path do
+  directory real_local_path do
     action :delete
   end
 end

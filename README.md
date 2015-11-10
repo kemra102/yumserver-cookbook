@@ -44,6 +44,7 @@ This creates the `basepath` and installs the following packages:
 
 * yum-utils
 * createrepo
+* rsync
 
 Additionally the recipe calls `yumserver::_nginx` which;
 
@@ -73,6 +74,32 @@ yumserver_mirror 'epel7' do
   repo_name 'epel'
   repo_description 'Extra Packages for Enterprise Linux 7'
   repo_baseurl 'https://dl.fedoraproject.org/pub/epel/7/x86_64/'
+  action :create
+end
+```
+
+### yumserver_rsync_mirror
+
+Each Yum repo you wish to mirror that provides an rsync endpoint can be defined using the `yumserver_rsync_mirror` custom resource.
+
+Each `yumserver_rsync_mirror` has the following attributes:
+
+| Attribute        | Type             | Description                                   | Default                                                    |
+|:----------------:|:----------------:|:---------------------------------------------:|:----------------------------------------------------------:|
+| name             | String or Symbol | Resource name.                                | N/A                                                        |
+| local_path       | String           | The basepath where the repo should be stored. | /var/lib/yum-repo                                          |
+| repo_name        | String           | Name of the Yum repo.                         | N/A                                                        |
+| repo_description | String           | Description of the Yum repo.                  | N/A                                                        |
+| repo_baseurl     | String           | Base URL of the Yum repo.                     | N/A                                                        |
+| rsync_options    | String           | Options to pass to rsync.                     | -aHS --numeric-ids --delete --delete-delay --delay-updates |
+
+To Mirror EPEL for EL7 for example:
+
+```ruby
+yumserver_rsync_mirror 'epel7' do
+  repo_name 'epel'
+  repo_description 'Extra Packages for Enterprise Linux 7'
+  repo_url 'rsync://dl.fedoraproject.org/pub/epel/7/x86_64/'
   action :create
 end
 ```

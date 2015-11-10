@@ -13,7 +13,7 @@ directory node['yumserver']['basepath'] do
   action :create
 end
 
-%w( yum-utils createrepo ).each do |pkg|
+%w(yum-utils createrepo rsync).each do |pkg|
   package pkg
 end
 

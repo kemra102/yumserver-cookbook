@@ -2,30 +2,20 @@ require 'serverspec'
 
 set :backend, :exec
 
-describe file('/var/lib/yum-repo') do
-  it { should be_directory }
-  it { should be_mode 755 }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
+%w(yum-utils createrepo rsync nginx).each do |pkg|
+  describe package(pkg) do
+    it { should be_installed }
+  end
 end
 
-describe package('yum-utils') do
-  it { should be_installed }
-end
-
-describe package('createrepo') do
-  it { should be_installed }
-end
-
-describe file('/var/lib/yum-repo/nginx') do
-  it { should be_directory }
-  it { should be_mode 755 }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
-end
-
-describe package('nginx') do
-  it { should be_installed }
+%w(/var/lib/yum-repo /var/lib/yum-repo/nginx
+   /var/lib/yum-repo/centos-virt).each do |dir|
+  describe file(dir) do
+    it { should be_directory }
+    it { should be_mode 755 }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+  end
 end
 
 describe file('/etc/nginx/conf.d/yumserver.conf') do
