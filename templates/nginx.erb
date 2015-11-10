@@ -1,10 +1,10 @@
 server {
   listen      80;
-  server_name <%= @nginx_servername %>;
+  server_name <%= node['yumserver']['nginx']['servername'] %>;
 
-  access_log  /var/log/nginx/<%= @nginx_servername %>.access.log main;
+  access_log  /var/log/nginx/<%= node['yumserver']['nginx']['servername'] %>.access.log main;
   location / {
-    root  html;
-    index index.html;
+    root  <%= node['yumserver']['basepath'] %>;
+    autoindex on;
   }
 }
