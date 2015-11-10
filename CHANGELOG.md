@@ -1,3 +1,13 @@
+## 2015-11-10 - Release 1.1.0
+### Summary
+Added the ability to mirror a repo that is available via rsync.
+
+#### Features
+- Mirror yum repos that provide rsync as an option.
+
+#### Bugfixes
+- Add regression test.
+
 ## 2015-11-10 - Release 1.0.2
 ### Summary
 Fix NGINX config.
