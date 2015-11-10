@@ -30,6 +30,7 @@ describe file('/etc/nginx/conf.d/yumserver.conf') do
   it { should be_mode 644 }
   it { should be_owned_by 'nginx' }
   it { should be_grouped_into 'nginx' }
+  it { should contain 'root /var/lib/yum-repo;' }
 end
 
 describe service('nginx') do
