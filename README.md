@@ -91,7 +91,7 @@ Each `yumserver_rsync_mirror` has the following attributes:
 | local_path       | String           | The basepath where the repo should be stored. | /var/lib/yum-repo                                          |
 | repo_name        | String           | Name of the Yum repo.                         | N/A                                                        |
 | repo_description | String           | Description of the Yum repo.                  | N/A                                                        |
-| repo_baseurl     | String           | Base URL of the Yum repo.                     | N/A                                                        |
+| repo_url         | String           | URL of the Yum repo.                          | N/A                                                        |
 | rsync_options    | String           | Options to pass to rsync.                     | -aHS --numeric-ids --delete --delete-delay --delay-updates |
 
 To Mirror EPEL for EL7 for example:
