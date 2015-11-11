@@ -7,9 +7,9 @@ yumserver_mirror 'nginx' do
   action :create
 end
 
-yumserver_rsync_mirror 'centos-virt' do
-  repo_name 'centos-virt'
+yumserver_rsync_mirror 'centos-kvm' do
+  repo_name 'centos-kvm'
   repo_description 'CentOS Virtualization Packages'
-  repo_url 'rsync://mirror.bytemark.co.uk/centos/7/virt/x86_64/'
+  repo_url 'rsync://mirror.bytemark.co.uk/centos/7/virt/x86_64/kvm-common/'
   action :create
 end

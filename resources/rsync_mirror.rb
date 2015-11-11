@@ -27,10 +27,18 @@ action :create do
       system "rsync #{rsync_options} #{repo_url} #{real_local_path}"
     end
   end
+  yum_repository repo_name do
+    description repo_description
+    baseurl "file://#{real_local_path}"
+    action :create
+  end
 end
 
 action :delete do
   directory real_local_path do
+    action :delete
+  end
+  yum_repository repo_name do
     action :delete
   end
 end

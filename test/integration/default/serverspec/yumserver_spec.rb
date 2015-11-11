@@ -18,8 +18,8 @@ end
   end
 end
 
-%w(/var/lib/yum-repo/centos-virt
-   /var/lib/yum-repo/centos-virt/xen).each do |dir|
+%w(/var/lib/yum-repo/centos-kvm
+   /var/lib/yum-repo/centos-kvm/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
   end
