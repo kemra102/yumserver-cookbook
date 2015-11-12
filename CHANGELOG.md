@@ -1,3 +1,10 @@
+## 2015-11-12 - Release 1.1.1
+### Summary
+Let Yum repo servers use their own rsync mirrors as repos.
+
+#### Features
+- For each `yumserver_rsync_mirror` create a `yum_repository` so the Yum server can use that repo if it needs it.
+
 ## 2015-11-10 - Release 1.1.0
 ### Summary
 Added the ability to mirror a repo that is available via rsync.
