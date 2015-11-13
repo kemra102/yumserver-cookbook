@@ -16,6 +16,7 @@ action :create do
   yum_repository repo_name do
     description repo_description
     baseurl repo_baseurl
+    gpgcheck false
     action :create
   end
   directory real_local_path do
