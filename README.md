@@ -23,9 +23,10 @@ Requires Chef 12.5 or later as this cookbook makes use of [Custom Resources](htt
 ## Attributes
 
 ### yumserver::default
-| Key                       | Type   | Description                       | Default          |
-|:-------------------------:|:------:|:---------------------------------:|:----------------:|
-| ['yumserver']['basepath'] | String | Where to store mirroed yum repos. | /var/lib/yum-rep |
+| Key                       | Type    | Description                                | Default          |
+|:-------------------------:|:-------:|:------------------------------------------:|:----------------:|
+| ['yumserver']['basepath'] | String  | Where to store mirroed yum repos.          | /var/lib/yum-rep |
+| ['yumserver']['zap']      | Boolean | Whether or not to "zap" */etc/yum.repos.d* | true             |
 
 ### yumserver::_nginx
 | Key                                       | Type   | Description                                          | Default      |
