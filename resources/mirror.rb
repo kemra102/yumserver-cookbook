@@ -29,7 +29,7 @@ action :create do
   end
   ruby_block 'reposync' do
     block do
-      system "reposync -r #{repo_name} -p #{real_local_path}"
+      system "reposync -d -r #{repo_name} -p #{real_local_path}"
     end
   end
   ruby_block 'createrepo' do
