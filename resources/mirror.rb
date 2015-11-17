@@ -3,6 +3,7 @@ property :local_path, String, required: false
 property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_baseurl, String, required: true
+property :use_repo, [TrueClass, FalseClass], required:true, default: true
 
 def real_local_path
   if local_path == NilClass
@@ -17,6 +18,7 @@ action :create do
     description repo_description
     baseurl repo_baseurl
     gpgcheck false
+    enabled false
     action :create
   end
   directory real_local_path do
@@ -35,6 +37,14 @@ action :create do
       system "createrepo #{real_local_path}"
     end
   end
+  if use_repo
+    yum_repository "#{repo_name}-local" do
+      description repo_description
+      baseurl "file://#{real_local_path}"
+      gpgcheck false
+      action :create
+    end
+  end
 end
 
 action :delete do
@@ -42,6 +52,9 @@ action :delete do
     action :delete
   end
   directory real_local_path do
+    action :delete
+  end
+  yum_repository "#{repo_name}-local" do
     action :delete
   end
 end

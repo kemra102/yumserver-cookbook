@@ -61,13 +61,14 @@ Each Yum repo you wish to mirror can be defined using the `yumserver_mirror` cus
 
 Each `yumserver_mirror` has the following attributes:
 
-| Attribute        | Type             | Description                                   | Default           |
-|:----------------:|:----------------:|:---------------------------------------------:|:-----------------:|
-| name             | String or Symbol | Resource name.                                | N/A               |
-| local_path       | String           | The basepath where the repo should be stored. | /var/lib/yum-repo |
-| repo_name        | String           | Name of the Yum repo.                         | N/A               |
-| repo_description | String           | Description of the Yum repo.                  | N/A               |
-| repo_baseurl     | String           | Base URL of the Yum repo.                     | N/A               |
+| Attribute        | Type             | Description                                              | Default           |
+|:----------------:|:----------------:|:--------------------------------------------------------:|:-----------------:|
+| name             | String or Symbol | Resource name.                                           | N/A               |
+| local_path       | String           | The basepath where the repo should be stored.            | /var/lib/yum-repo |
+| repo_name        | String           | Name of the Yum repo.                                    | N/A               |
+| repo_description | String           | Description of the Yum repo.                             | N/A               |
+| repo_baseurl     | String           | Base URL of the Yum repo.                                | N/A               |
+| use_repo         | Boolean          | If the repo should be availble for the yumserver to use. | true              |
 
 To Mirror EPEL for EL7 for example:
 
@@ -86,14 +87,15 @@ Each Yum repo you wish to mirror that provides an rsync endpoint can be defined 
 
 Each `yumserver_rsync_mirror` has the following attributes:
 
-| Attribute        | Type             | Description                                   | Default                                                    |
-|:----------------:|:----------------:|:---------------------------------------------:|:----------------------------------------------------------:|
-| name             | String or Symbol | Resource name.                                | N/A                                                        |
-| local_path       | String           | The basepath where the repo should be stored. | /var/lib/yum-repo                                          |
-| repo_name        | String           | Name of the Yum repo.                         | N/A                                                        |
-| repo_description | String           | Description of the Yum repo.                  | N/A                                                        |
-| repo_url         | String           | URL of the Yum repo.                          | N/A                                                        |
-| rsync_options    | String           | Options to pass to rsync.                     | -aHS --numeric-ids --delete --delete-delay --delay-updates |
+| Attribute        | Type             | Description                                              | Default                                                    |
+|:----------------:|:----------------:|:--------------------------------------------------------:|:----------------------------------------------------------:|
+| name             | String or Symbol | Resource name.                                           | N/A                                                        |
+| local_path       | String           | The basepath where the repo should be stored.            | /var/lib/yum-repo                                          |
+| repo_name        | String           | Name of the Yum repo.                                    | N/A                                                        |
+| repo_description | String           | Description of the Yum repo.                             | N/A                                                        |
+| repo_url         | String           | URL of the Yum repo.                                     | N/A                                                        |
+| rsync_options    | String           | Options to pass to rsync.                                | -aHS --numeric-ids --delete --delete-delay --delay-updates |
+| use_repo         | Boolean          | If the repo should be availble for the yumserver to use. | true                                                       |
 
 To Mirror EPEL for EL7 for example:
 

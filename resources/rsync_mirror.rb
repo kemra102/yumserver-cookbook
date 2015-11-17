@@ -6,6 +6,7 @@ property :repo_url, String, required: true
 property :rsync_options, String, required: false,
                                  default: '-aHS --numeric-ids --delete \
                                  --delete-delay --delay-updates'
+property :use_repo, [TrueClass, FalseClass], required:true, default: true
 
 def real_local_path
   if local_path == NilClass
@@ -27,11 +28,13 @@ action :create do
       system "rsync #{rsync_options} #{repo_url} #{real_local_path}"
     end
   end
-  yum_repository repo_name do
-    description repo_description
-    baseurl "file://#{real_local_path}"
-    gpgcheck false
-    action :create
+  if use_repo
+    yum_repository "#{repo_name}-local" do
+      description repo_description
+      baseurl "file://#{real_local_path}"
+      gpgcheck false
+      action :create
+    end
   end
 end
 
@@ -39,7 +42,7 @@ action :delete do
   directory real_local_path do
     action :delete
   end
-  yum_repository repo_name do
+  yum_repository "#{repo_name}-local" do
     action :delete
   end
 end
