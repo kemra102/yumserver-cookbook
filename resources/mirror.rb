@@ -3,7 +3,7 @@ property :local_path, String, required: false
 property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_baseurl, String, required: true
-property :use_repo, [TrueClass, FalseClass], required:true, default: true
+property :use_repo, [TrueClass, FalseClass], required: true, default: true
 
 def real_local_path
   if local_path == NilClass
