@@ -23,7 +23,7 @@ action :create do
     mode '0755'
     action :create
   end
-  ruby_block 'reposync' do
+  ruby_block 'rsync' do
     block do
       system "rsync #{rsync_options} #{repo_url} #{real_local_path}"
     end
