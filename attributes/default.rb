@@ -1,5 +1,5 @@
 default['yumserver']['basepath'] = '/var/lib/yum-repo'
-default['yumserver']['zap'] = true
+default['yumserver']['zap'] = false
 
 default['yumserver']['nginx']['config_cookbook'] = 'yumserver'
 default['yumserver']['nginx']['servername'] = node['fqdn']
