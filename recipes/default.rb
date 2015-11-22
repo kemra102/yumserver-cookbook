@@ -19,11 +19,11 @@ end
 
 include_recipe "#{cookbook_name}::_nginx"
 
-if node['yumserver']['zap']
-  zap_yum_repos '/etc/yum.repos.d' do
-    pattern '*'
-    klass [Chef::Resource::YumRepository, Chef::Resource::YumserverMirror,
-           Chef::Resource::YumserverRsyncMirror]
-    immediately false
-  end
-end
+# if node['yumserver']['zap']
+#   zap_yum_repos '/etc/yum.repos.d' do
+#     pattern '*'
+#     klass [Chef::Resource::YumRepository, Chef::Resource::YumserverMirror,
+#            Chef::Resource::YumserverRsyncMirror]
+#     immediately false
+#   end
+# end
