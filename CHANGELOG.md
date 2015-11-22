@@ -1,3 +1,15 @@
+## 2015-11-22 - Release 
+### Summary
+General improvements to mirror resources.
+
+#### Features
+- Optionally (`true` by default) create a `yum_repository` to allow the yumserver to use it's mirrored repos.
+- The `yumserver_mirror` resource now correctly removes packages no longer in the upstream repo.
+- The `yumserver_mirror` should complete quicker when no packages are updated.
+
+#### Bugfixes
+- Disable mirrored repos to avoid issues such as mirroring the same repo for two versions of the same distro and causing update issues on the yumserver.
+
 ## 2015-11-12 - Release 1.1.1
 ### Summary
 Let Yum repo servers use their own rsync mirrors as repos.
