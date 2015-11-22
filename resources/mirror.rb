@@ -34,7 +34,7 @@ action :create do
   end
   ruby_block 'createrepo' do
     block do
-      system "createrepo #{real_local_path}"
+      system "createrepo -C #{real_local_path}"
     end
   end
   if use_repo
