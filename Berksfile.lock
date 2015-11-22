@@ -6,8 +6,8 @@ DEPENDENCIES
     path: test/fixtures/cookbooks/yumserver-test
 
 GRAPH
-  yum (3.5.4)
-  yumserver (1.1.0)
+  yum (3.8.2)
+  yumserver (1.1.1)
     yum (>= 3.5.2)
   yumserver-test (1.0.0)
     yumserver (>= 0.0.0)
