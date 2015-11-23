@@ -29,7 +29,7 @@ action :create do
     end
   end
   if use_repo
-    yum_repository "#{repo_name}-local" do
+    yum_repository repo_name do
       description repo_description
       baseurl "file://#{real_local_path}"
       gpgcheck false
@@ -42,7 +42,7 @@ action :delete do
   directory real_local_path do
     action :delete
   end
-  yum_repository "#{repo_name}-local" do
+  yum_repository repo_name do
     action :delete
   end
 end

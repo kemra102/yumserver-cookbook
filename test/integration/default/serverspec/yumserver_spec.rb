@@ -8,7 +8,14 @@ set :backend, :exec
   end
 end
 
-%w(/var/lib/yum-repo /var/lib/yum-repo/nginx
+describe file('/etc/reposync.conf') do
+  it { should be_file }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end
+
+%w(/etc/reposync.repos.d /var/lib/yum-repo /var/lib/yum-repo/nginx
    /var/lib/yum-repo/nginx/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
@@ -16,6 +23,13 @@ end
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
   end
+end
+
+describe file('/etc/reposync.repos.d/nginx.repo') do
+  it { should be_file }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
 end
 
 %w(/var/lib/yum-repo/centos-kvm

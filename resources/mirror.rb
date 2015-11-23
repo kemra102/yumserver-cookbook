@@ -14,11 +14,17 @@ def real_local_path
 end
 
 action :create do
-  yum_repository repo_name do
-    description repo_description
-    baseurl repo_baseurl
-    gpgcheck false
-    enabled false
+  template "/etc/reposync.repos.d/#{repo_name}.repo" do
+    cookbook 'yumserver'
+    source 'repo.erb'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    variables(
+      repo_name: repo_name,
+      repo_description: repo_description,
+      repo_baseurl: repo_baseurl
+    )
     action :create
   end
   directory real_local_path do
@@ -29,7 +35,8 @@ action :create do
   end
   ruby_block 'reposync' do
     block do
-      system "reposync -d -r #{repo_name} -p #{real_local_path}"
+      system "reposync -d -c /etc/reposync.conf \
+             -r #{repo_name} -p #{real_local_path}"
     end
   end
   ruby_block 'createrepo' do
@@ -38,7 +45,7 @@ action :create do
     end
   end
   if use_repo
-    yum_repository "#{repo_name}-local" do
+    yum_repository repo_name do
       description repo_description
       baseurl "file://#{real_local_path}"
       gpgcheck false
@@ -48,13 +55,13 @@ action :create do
 end
 
 action :delete do
-  yum_repository repo_name do
+  template "/etc/reposync.repos.d/#{repo_name}.conf" do
     action :delete
   end
   directory real_local_path do
     action :delete
   end
-  yum_repository "#{repo_name}-local" do
+  yum_repository repo_name do
     action :delete
   end
 end
