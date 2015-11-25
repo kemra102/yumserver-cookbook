@@ -1,4 +1,12 @@
-## 2015-11-22 - Release 
+## 2015-11-25 1.3.0
+### Summary
+Large bugix release to ensure mirrored repos are properly updated after the 1st sync.
+
+#### Bugfixes
+- Made `reposync` in the `mirror` resource use alternate yum.conf & repo directory to allow them all to be enabled (enabling updates) whithout interfering with the system's yum.
+- Made the metadata on `reposync` in the `mirror` resource expire immedietly so package changes are synced more often than every 6 hours.
+
+## 2015-11-22 - Release 1.2.0 
 ### Summary
 General improvements to mirror resources.
 
