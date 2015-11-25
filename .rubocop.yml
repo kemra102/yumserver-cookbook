@@ -1,0 +1,3 @@
+AllCops:
+  Exclude:
+    - 'test/fixtures/cookbooks/yumserver-test/recipes/default.rb'
