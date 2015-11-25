@@ -32,8 +32,8 @@ describe file('/etc/reposync.repos.d/nginx.repo') do
   it { should be_grouped_into 'root' }
 end
 
-%w(/var/lib/yum-repo/centos-kvm
-   /var/lib/yum-repo/centos-kvm/repodata).each do |dir|
+%w(/var/lib/yum-repo/centos-xen
+   /var/lib/yum-repo/centos-xen/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
   end

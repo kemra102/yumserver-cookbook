@@ -7,9 +7,8 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '1.3.0'
 
 %w(centos oracle redhat scientific).each do |os|
-  supports os, '>= 7.0'
+  supports os, '>= 6.0'
 end
-supports 'amazon'
 
 source_url 'https://github.com/kemra102/yumserver-cookbook' if
   respond_to?(:source_url)

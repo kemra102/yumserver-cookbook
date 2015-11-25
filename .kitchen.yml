@@ -16,6 +16,13 @@ platforms:
           bash install.sh -v <%= ENV.fetch 'CHEF_VERSION', '12.5' %>
       run_command: /usr/sbin/init
       privileged: true
+  - name: centos-6
+    driver_config:
+      provision_command:
+        - >
+          curl -L -O https://www.opscode.com/chef/install.sh &&
+          bash install.sh -v <%= ENV.fetch 'CHEF_VERSION', '12.5' %>
+      privileged: true
 
 suites:
   - name: default
