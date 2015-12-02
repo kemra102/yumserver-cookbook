@@ -1,3 +1,11 @@
+## 2015-12-02
+### Summary
+Small bugfix update to make the delete action work properly across custom resources.
+
+#### Bugfixes
+- In the mirror resource make sure the reposync file gets deleted by switching the resource type to file instead of template.
+- In both resources make sure the base path is deleted recursively (otherwise it will fail as there are packages in them).
+
 ## 2015-11-25 1.3.0
 ### Summary
 Large bugix release to ensure mirrored repos are properly updated after the 1st sync.
