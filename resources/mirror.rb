@@ -55,10 +55,11 @@ action :create do
 end
 
 action :delete do
-  template "/etc/reposync.repos.d/#{repo_name}.conf" do
+  file "/etc/reposync.repos.d/#{repo_name}.conf" do
     action :delete
   end
   directory real_local_path do
+    recursive true
     action :delete
   end
   yum_repository repo_name do

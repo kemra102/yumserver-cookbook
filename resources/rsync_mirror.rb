@@ -40,6 +40,7 @@ end
 
 action :delete do
   directory real_local_path do
+    recursive true
     action :delete
   end
   yum_repository repo_name do
