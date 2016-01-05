@@ -4,8 +4,7 @@ module YumServer
     extend Chef::Mixin::ShellOut
 
     def self.reposync(repo, path)
-      cmd = shell_out!("reposync -d -c /etc/reposync.conf -r #{repo} -p \
-                       #{path}")
+      shell_out!("reposync -d -c /etc/reposync.conf -r #{repo} -p #{path}")
     end
   end
 end
