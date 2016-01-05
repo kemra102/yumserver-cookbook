@@ -33,11 +33,9 @@ action :create do
     mode '0755'
     action :create
   end
-  ruby_block 'reposync' do
-    block do
-      system "reposync -d -c /etc/reposync.conf \
-             -r #{repo_name} -p #{real_local_path}"
-    end
+  execute 'reposync' do
+    command YumServer::Helper.reposync(repo_name, real_local_path)
+    action :run
   end
   ruby_block 'createrepo' do
     block do
