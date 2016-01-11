@@ -25,7 +25,7 @@ action :create do
   end
   ruby_block 'rsync' do
     block do
-      system "rsync #{rsync_options} #{repo_url} #{real_local_path}"
+      YumServer::Helper.rsync(rsync_options, repo_url, real_local_path)
     end
   end
   if use_repo

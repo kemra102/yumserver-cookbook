@@ -33,14 +33,18 @@ action :create do
     mode '0755'
     action :create
   end
-  execute 'reposync' do
-    command YumServer::Helper.reposync(repo_name, real_local_path)
+  ruby_block 'reposync' do
+    block do
+      YumServer::Helper.reposync(repo_name, real_local_path)
+    end
     action :run
+    only_if { ::File.exist?("/etc/reposync.repos.d/#{repo_name}.repo") }
   end
   ruby_block 'createrepo' do
     block do
-      system "createrepo -C #{real_local_path}"
+      YumServer::Helper.createrepo(real_local_path)
     end
+    action :run
   end
   if use_repo
     yum_repository repo_name do

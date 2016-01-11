@@ -2,7 +2,7 @@
 # Cookbook Name:: yumserver
 # Recipe:: default
 #
-# Copyright 2015, Danny Roberts
+# Copyright 2016, Danny Roberts
 #
 # License: BSD-2-Clause
 #
@@ -33,4 +33,4 @@ end
   package pkg
 end
 
-include_recipe "#{cookbook_name}::_nginx"
+include_recipe 'yumserver::_nginx'
