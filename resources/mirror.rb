@@ -4,6 +4,7 @@ property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_baseurl, String, required: true
 property :use_repo, [TrueClass, FalseClass], required: true, default: true
+property :repo_workers, Integer, required: false, default: 10
 
 def real_local_path
   if local_path == NilClass
@@ -42,7 +43,7 @@ action :create do
   end
   ruby_block 'createrepo' do
     block do
-      YumServer::Helper.createrepo(real_local_path)
+      YumServer::Helper.createrepo(real_local_path, workers=repo_workers)
     end
     action :run
   end
