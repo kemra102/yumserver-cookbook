@@ -7,7 +7,7 @@ module YumServer
       shell_out!("reposync -d -c /etc/reposync.conf -r #{repo} -p #{path}")
     end
 
-    def self.createrepo(path, workers=10)
+    def self.createrepo(path, workers)
       shell_out!("createrepo --workers #{workers} -C #{path}")
     end
 

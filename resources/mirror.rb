@@ -43,7 +43,7 @@ action :create do
   end
   ruby_block 'createrepo' do
     block do
-      YumServer::Helper.createrepo(real_local_path, workers=repo_workers)
+      YumServer::Helper.createrepo(real_local_path, repo_workers)
     end
     action :run
   end
