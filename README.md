@@ -68,6 +68,7 @@ Each `yumserver_mirror` has the following attributes:
 | repo_description | String           | Description of the Yum repo.                             | N/A               |
 | repo_baseurl     | String           | Base URL of the Yum repo.                                | N/A               |
 | use_repo         | Boolean          | If the repo should be availble for the yumserver to use. | true              |
+| repo_workers     | Integer          | Number of createrepo workers to start up.                | server cpu count  |
 
 To Mirror EPEL for EL7 for example:
 
