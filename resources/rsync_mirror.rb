@@ -16,6 +16,10 @@ def real_local_path
   end
 end
 
+def path
+  real_local_path
+end
+
 action :create do
   directory real_local_path do
     owner 'root'

@@ -20,6 +20,11 @@ directory '/etc/reposync.repos.d/' do
   action :create
 end
 
+zap_directory '/etc/reposync.repos.d/' do
+  klass [Chef::Resource::YumserverMirror, Chef::Resource::YumserverRsyncMirror]
+  immediately true
+end
+
 cookbook_file '/etc/reposync.conf' do
   cookbook 'yumserver'
   source 'reposync.conf'

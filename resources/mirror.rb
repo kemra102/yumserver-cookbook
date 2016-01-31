@@ -14,6 +14,10 @@ def real_local_path
   end
 end
 
+def path
+  real_local_path
+end
+
 action :create do
   template "/etc/reposync.repos.d/#{repo_name}.repo" do
     cookbook 'yumserver'
