@@ -62,7 +62,7 @@ action :create do
 end
 
 action :delete do
-  file "/etc/reposync.repos.d/#{repo_name}.conf" do
+  file "/etc/reposync.repos.d/#{repo_name}.repo" do
     action :delete
   end
   directory real_local_path do
