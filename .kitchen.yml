@@ -5,7 +5,7 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: false
+  require_chef_omnibus: true
 
 platforms:
   - name: centos-7
@@ -13,17 +13,11 @@ platforms:
       provision_command:
         - yum -y swap -- remove systemd-container systemd-container-libs -- install systemd
         - yum -y install iproute
-        - >
-          curl -L -O https://www.opscode.com/chef/install.sh &&
-          bash install.sh -v <%= ENV.fetch 'CHEF_VERSION', '12.5' %>
       run_command: /usr/sbin/init
       privileged: true
   - name: centos-6
     driver_config:
       provision_command:
-        - >
-          curl -L -O https://www.opscode.com/chef/install.sh &&
-          bash install.sh -v <%= ENV.fetch 'CHEF_VERSION', '12.5' %>
       privileged: true
 
 suites:

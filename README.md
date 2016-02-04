@@ -27,12 +27,6 @@ Requires Chef 12.5 or later as this cookbook makes use of [Custom Resources](htt
 |:-------------------------:|:-------:|:------------------------------------------:|:----------------:|
 | ['yumserver']['basepath'] | String  | Where to store mirroed yum repos.          | /var/lib/yum-rep |
 
-### yumserver::_nginx
-| Key                                       | Type   | Description                                          | Default      |
-|:-----------------------------------------:|:------:|:----------------------------------------------------:|:------------:|
-| ['yumserver']['nginx']['config_cookbook'] | String | Which cookbook to use for the NGINX config template. | yumserver    |
-| ['yumserver']['nginx']['servername']      | String | Server name to use in NGINX config.                  | node['fqdn'] |
-
 ## Usage
 
 You always need to include the main recipe:
