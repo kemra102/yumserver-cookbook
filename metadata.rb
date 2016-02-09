@@ -15,6 +15,6 @@ source_url 'https://github.com/kemra102/yumserver-cookbook' if
 issues_url 'https://github.com/kemra102/yumserver-cookbook/issues' if
   respond_to?(:issues_url)
 
-depends 'nginx_server', '>= 1.0.0'
+depends 'nginx_server', '>= 1.0.1'
 depends 'zap', '>= 0.10.0'
 depends 'yum', '>= 3.5.2'
