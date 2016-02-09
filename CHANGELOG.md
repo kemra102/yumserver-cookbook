@@ -1,3 +1,16 @@
+## 2015-02-09
+### Summary
+Major release with additional features/bug fixes that may break backwards compatibility.
+
+### Features
+- Now using `mixlib-shellout` instead of exec resources for `yumserver_mirrror` resources.
+- The `createrepo` command ran as part of `yumserver_mirror` resources are now multi-threaded.
+- Add `zap` support for `/etc/resposync.repos.d`.
+- Now uses the `nginx_server` cookbook to provide the web server.
+
+### Bugfixes
+- Fixed a typo in the `yumserver_mirror` resource that prevented the reposync config from beign remove on a `:delete` action.
+
 ## 2015-12-02
 ### Summary
 Small bugfix update to make the delete action work properly across custom resources.
