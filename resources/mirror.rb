@@ -14,12 +14,13 @@ def real_local_path
   end
 end
 
+# Needs to be def'd as path for zap to work.
 def path
-  real_local_path
+  "/etc/reposync.repos.d/#{repo_name}.repo"
 end
 
 action :create do
-  template "/etc/reposync.repos.d/#{repo_name}.repo" do
+  template path do
     cookbook 'yumserver'
     source 'repo.erb'
     owner 'root'
@@ -43,7 +44,7 @@ action :create do
       YumServer::Helper.reposync(repo_name, real_local_path)
     end
     action :run
-    only_if { ::File.exist?("/etc/reposync.repos.d/#{repo_name}.repo") }
+    only_if { ::File.exist?(path) }
   end
   ruby_block 'createrepo' do
     block do
@@ -62,7 +63,7 @@ action :create do
 end
 
 action :delete do
-  file "/etc/reposync.repos.d/#{repo_name}.repo" do
+  file path do
     action :delete
   end
   directory real_local_path do

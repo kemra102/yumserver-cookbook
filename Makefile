@@ -1,6 +1,6 @@
-check : rubocop foodcritic
+default : check kitchen
 
-test : rubocop foodcritic kitchen
+check : rubocop foodcritic
 
 travis : check
 	kitchen verify
