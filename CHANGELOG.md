@@ -1,4 +1,11 @@
-## 2015-02-09
+## 2016-02-11
+### Summary
+Minor bug fix after a fault was found in production with this cookbook.
+
+#### Bugfixes
+- The path defined by the `yumserver_mirror` resource was incorrect. This was causing the `zap` feature to fail on runs after the first. Fixing the defined path in this resource fixed the error with `zap`.
+
+## 2016-02-09
 ### Summary
 Major release with additional features/bug fixes that may break backwards compatibility.
 
