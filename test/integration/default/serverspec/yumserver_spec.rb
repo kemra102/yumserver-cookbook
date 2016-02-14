@@ -15,8 +15,7 @@ describe file('/etc/reposync.conf') do
   it { should be_grouped_into 'root' }
 end
 
-%w(/etc/reposync.repos.d /var/lib/yum-repo /var/lib/yum-repo/nginx
-   /var/lib/yum-repo/nginx/repodata).each do |dir|
+%w(/etc/reposync.repos.d /yum /yum/nginx /yumnginx/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
     it { should be_mode 755 }
@@ -32,8 +31,7 @@ describe file('/etc/reposync.repos.d/nginx.repo') do
   it { should be_grouped_into 'root' }
 end
 
-%w(/var/lib/yum-repo/centos-xen
-   /var/lib/yum-repo/centos-xen/repodata).each do |dir|
+%w(/yum/centos-xen /yum/centos-xen/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
   end
@@ -44,7 +42,7 @@ describe file('/etc/nginx/conf.d/yumserver.conf') do
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
-  it { should contain 'root /var/lib/yum-repo;' }
+  it { should contain 'root /yum;' }
 end
 
 describe service('nginx') do

@@ -12,7 +12,7 @@ def real_local_path
   if local_path == NilClass
     "#{local_path}/#{name}/"
   else
-    "/var/lib/yum-repo/#{name}/"
+    "#{node['yumserver']['basepath']}/#{name}/"
   end
 end
 

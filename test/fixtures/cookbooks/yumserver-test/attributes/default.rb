@@ -1,0 +1,1 @@
+default['yumserver']['basepath'] = '/yum'
