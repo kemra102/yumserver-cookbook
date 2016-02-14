@@ -15,7 +15,7 @@ describe file('/etc/reposync.conf') do
   it { should be_grouped_into 'root' }
 end
 
-%w(/etc/reposync.repos.d /yum /yum/nginx /yumnginx/repodata).each do |dir|
+%w(/etc/reposync.repos.d /yum /yum/nginx /yum/nginx/repodata).each do |dir|
   describe file(dir) do
     it { should be_directory }
     it { should be_mode 755 }
