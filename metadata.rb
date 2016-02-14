@@ -4,7 +4,7 @@ maintainer_email 'danny@thefallenphoenix.net'
 license 'BSD-2-Clause'
 description 'Installs/Configures yumserver & mirrors remote repos.'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '2.0.1'
+version '2.0.2'
 
 %w(centos oracle redhat scientific).each do |os|
   supports os, '>= 6.0'

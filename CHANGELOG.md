@@ -1,3 +1,10 @@
+## 2016-02-14
+### Summary
+Minor bug fix.
+
+#### Bugfixes
+- Fixed a bug that meant the `node['yumserver']['basepath']` attribute wasn't honoured by the `yumserver_mirror` & `yumserver_rsync_mirror` resources.
+
 ## 2016-02-11
 ### Summary
 Minor bug fix after a fault was found in production with this cookbook.
@@ -34,7 +41,7 @@ Large bugix release to ensure mirrored repos are properly updated after the 1st 
 - Made `reposync` in the `mirror` resource use alternate yum.conf & repo directory to allow them all to be enabled (enabling updates) whithout interfering with the system's yum.
 - Made the metadata on `reposync` in the `mirror` resource expire immedietly so package changes are synced more often than every 6 hours.
 
-## 2015-11-22 - Release 1.2.0 
+## 2015-11-22 - Release 1.2.0
 ### Summary
 General improvements to mirror resources.
 
@@ -81,4 +88,3 @@ Initial release. Includes basic functionality.
 #### Features
 - Mirrors Yum repos.
 - Serves Yum repos via NGINX.
-
