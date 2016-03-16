@@ -3,8 +3,13 @@ module YumServer
   module Helper
     extend Chef::Mixin::ShellOut
 
-    def self.reposync(repo, path)
-      shell_out!("reposync -d -c /etc/reposync.conf -r #{repo} -p #{path}")
+    def self.reposync(repo, path, newest_only)
+      if newest_only
+        opt = '-n'
+      else
+        opt = ''
+      end
+      shell_out!("reposync #{newest_only} -d -c /etc/reposync.conf -r #{repo} -p #{path}")
     end
 
     def self.createrepo(path)
