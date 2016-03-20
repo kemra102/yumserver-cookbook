@@ -3,7 +3,8 @@ module YumServer
   module Helper
     extend Chef::Mixin::ShellOut
 
-    def self.reposync(repo, path, options='')
+    def self.reposync(repo, path, options = '')
+      # rubocop:disable Metrics/LineLength
       shell_out!("reposync #{options} -d -c /etc/reposync.conf -r #{repo} -p #{path}")
     end
 
