@@ -3,6 +3,7 @@ property :local_path, String, required: false
 property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_baseurl, String, required: true
+property :options, String, required: false
 property :use_repo, [TrueClass, FalseClass], required: true, default: true
 property :repo_workers, Integer, required: false, default: node['cpu']['total']
 
@@ -41,7 +42,7 @@ action :create do
   end
   ruby_block 'reposync' do
     block do
-      YumServer::Helper.reposync(repo_name, real_local_path)
+      YumServer::Helper.reposync(repo_name, real_local_path, options)
     end
     action :run
     only_if { ::File.exist?(path) }
