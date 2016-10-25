@@ -9,7 +9,7 @@ property :rsync_options, String, required: false,
 property :use_repo, [TrueClass, FalseClass], required: true, default: true
 
 def real_local_path
-  if local_path == NilClass
+  if local_path != NilClass
     "#{local_path}/#{name}/"
   else
     "#{node['yumserver']['basepath']}/#{name}/"
