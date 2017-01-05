@@ -11,8 +11,8 @@ module YumServer
       shell_out!("createrepo --workers #{workers} -C #{path}")
     end
 
-    def self.rsync(options, url, path)
-      shell_out!("rsync #{options} #{url} #{path}")
+    def self.rsync(options, url, path, timeout)
+      shell_out!("rsync #{options} #{url} #{path}", timeout: timeout)
     end
   end
 end

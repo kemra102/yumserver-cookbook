@@ -3,6 +3,7 @@ property :local_path, String, required: false
 property :repo_name, String, required: true
 property :repo_description, String, required: true
 property :repo_url, String, required: true
+property :timeout, Integer, required: false, default: 600
 property :rsync_options, String, required: false,
                                  default: '-aHS --numeric-ids --delete \
                                  --delete-delay --delay-updates'
@@ -29,7 +30,8 @@ action :create do
   end
   ruby_block 'rsync' do
     block do
-      YumServer::Helper.rsync(rsync_options, repo_url, real_local_path)
+      YumServer::Helper.rsync(rsync_options, repo_url, real_local_path,
+                              new_resource.timeout)
     end
   end
   if use_repo
