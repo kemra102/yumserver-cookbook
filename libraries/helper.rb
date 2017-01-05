@@ -3,8 +3,8 @@ module YumServer
   module Helper
     extend Chef::Mixin::ShellOut
 
-    def self.reposync(repo, path)
-      shell_out!("reposync -d -c /etc/reposync.conf -r #{repo} -p #{path}")
+    def self.reposync(repo, path, options = '', timeout = '')
+      shell_out!("reposync #{options} -d -c /etc/reposync.conf -r #{repo} -p #{path}", timeout: timeout)
     end
 
     def self.createrepo(path, workers)
