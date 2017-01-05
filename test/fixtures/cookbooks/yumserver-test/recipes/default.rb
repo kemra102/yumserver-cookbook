@@ -6,6 +6,8 @@ yumserver_mirror 'nginx' do
   repo_name 'nginx'
   repo_description 'NGINX web server'
   repo_baseurl "http://nginx.org/packages/centos/#{major_ver[/./,0]}/x86_64/"
+  options '-g'
+  timeout 800
   action :create
 end
 

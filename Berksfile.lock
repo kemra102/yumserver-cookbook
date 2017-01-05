@@ -15,7 +15,7 @@ GRAPH
     yum (~> 3.2)
   yum-nginx (0.1.0)
     yum (~> 3.6)
-  yumserver (2.0.1)
+  yumserver (2.0.2)
     nginx_server (>= 1.0.1)
     yum (>= 3.5.2)
     zap (>= 0.10.0)

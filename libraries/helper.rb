@@ -4,7 +4,7 @@ module YumServer
     extend Chef::Mixin::ShellOut
 
     def self.reposync(repo, path, options = '', timeout = '')
-      shell_out!("reposync #{options} -d -c /etc/reposync.conf -r #{repo} -p #{path}", timeout: timeout)
+      shell_out!("reposync #{options} -d -c /etc/reposync.conf -r #{repo} -p #{path}", timeout: timeout) # rubocop:disable Metrics/LineLength
     end
 
     def self.createrepo(path, workers)
