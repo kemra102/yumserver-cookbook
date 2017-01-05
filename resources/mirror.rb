@@ -9,7 +9,7 @@ property :use_repo, [TrueClass, FalseClass], required: true, default: true
 property :repo_workers, Integer, required: false, default: node['cpu']['total']
 
 def real_local_path
-  if local_path != NilClass
+  if local_path == NilClass
     "#{local_path}/#{name}/"
   else
     "#{node['yumserver']['basepath']}/#{name}/"
@@ -43,7 +43,8 @@ action :create do
   end
   ruby_block 'reposync' do
     block do
-      YumServer::Helper.reposync(repo_name, real_local_path, options, new_resource.timeout)
+      YumServer::Helper.reposync(repo_name, real_local_path, options,
+                                 new_resource.timeout)
     end
     action :run
     only_if { ::File.exist?(path) }
