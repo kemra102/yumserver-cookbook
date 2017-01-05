@@ -61,6 +61,8 @@ Each `yumserver_mirror` has the following attributes:
 | repo_name        | String           | Name of the Yum repo.                                    | N/A               |
 | repo_description | String           | Description of the Yum repo.                             | N/A               |
 | repo_baseurl     | String           | Base URL of the Yum repo.                                | N/A               |
+| options          | String           | Additional options to pass to `reposync`.                | N/A               |
+| timeout          | Integer          | Timeout for the `reposync` command.                      | 600               |
 | use_repo         | Boolean          | If the repo should be availble for the yumserver to use. | true              |
 | repo_workers     | Integer          | Number of createrepo workers to start up.                | server cpu count  |
 
@@ -88,6 +90,7 @@ Each `yumserver_rsync_mirror` has the following attributes:
 | repo_name        | String           | Name of the Yum repo.                                    | N/A                                                        |
 | repo_description | String           | Description of the Yum repo.                             | N/A                                                        |
 | repo_url         | String           | URL of the Yum repo.                                     | N/A                                                        |
+| timeout          | Integer          | Timeout for the `rsync` command.                         | 600                                                        |
 | rsync_options    | String           | Options to pass to rsync.                                | -aHS --numeric-ids --delete --delete-delay --delay-updates |
 | use_repo         | Boolean          | If the repo should be availble for the yumserver to use. | true                                                       |
 
