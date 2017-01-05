@@ -1,3 +1,11 @@
+## 2017-01-05 - Release 2.1.0
+### Summary
+Additional features for custom resources.
+
+#### Features
+- Added a `timeout` option for both `yumserver_mirror` & `yumserver_rsync_mirror`.
+- Added an `options` option for `yumserver_mirror` allowing you to add additional options to the reposync command.
+
 ## 2016-02-14
 ### Summary
 Minor bug fix.
